@@ -1,0 +1,20 @@
+{
+  "expo": {
+    "name": "H & D Boutique",
+    "slug": "hd-boutique",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.hdboutique.app"
+    },
+    "android": {
+      "package": "com.hdboutique.app"
+    },
+    "scheme": "hd-boutique"
+  }
+}

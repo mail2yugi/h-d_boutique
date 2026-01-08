@@ -1,0 +1,18 @@
+{
+  "name": "hd-boutique-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "H & D Boutique - Production-ready e-commerce platform (fully free stack)",
+  "scripts": {
+    "dev": "pnpm --parallel --filter './apps/*' dev",
+    "build": "pnpm --filter './packages/*' build && pnpm --filter './apps/*' build",
+    "lint": "pnpm --parallel --filter './packages/*' --filter './apps/*' lint",
+    "clean": "pnpm --parallel --filter './packages/*' --filter './apps/*' clean",
+    "type-check": "pnpm --parallel --filter './packages/*' --filter './apps/*' type-check"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.0"
+}
