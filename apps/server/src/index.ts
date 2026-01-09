@@ -82,6 +82,9 @@ app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/images', imageRoutes);
 
+// Handle OPTIONS requests for CORS preflight
+app.options('*', cors());
+
 // Error handler
 app.use((err: any, req: any, res: any, next: any) => {
   console.error('Error:', err);
