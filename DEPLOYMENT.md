@@ -6,7 +6,7 @@ This guide will help you deploy your H & D Boutique web app to GitHub Pages.
 
 Your project is already configured with:
 - ✅ GitHub Actions workflow (`.github/workflows/deploy.yml`)
-- ✅ Vite base path configured (`/hd/`)
+- ✅ Vite base path configured (`/h-d_boutique/`)
 - ✅ Build scripts in package.json
 
 ## 📋 Step-by-Step Deployment
@@ -65,7 +65,7 @@ git push origin main
 
 Once deployment is complete, your site will be available at:
 
-**🌐 https://mail2yugi.github.io/hd/**
+**🌐 https://mail2yugi.github.io/h-d_boutique/**
 
 ## 🔄 Automatic Deployments
 
@@ -110,7 +110,7 @@ cd apps/web
 pnpm preview
 ```
 
-This will serve your production build at `http://localhost:4173/hd/`
+This will serve your production build at `http://localhost:4173/h-d_boutique/`
 
 ### Common Issues & Solutions
 
@@ -118,8 +118,8 @@ This will serve your production build at `http://localhost:4173/hd/`
 - ✅ Already handled! The workflow creates a `404.html` file for SPA routing
 
 **Issue 2: Images or assets not loading**
-- Make sure all asset paths use the base path `/hd/`
-- Check the Vite config has `base: '/hd/'`
+- Make sure all asset paths use the base path `/h-d_boutique/`
+- Check the Vite config has `base: '/h-d_boutique/'`
 
 **Issue 3: API calls failing**
 - Verify the `VITE_API_URL` secret is set correctly
@@ -155,5 +155,5 @@ If you encounter any issues:
 ---
 
 **Repository:** https://github.com/mail2yugi/h-d_boutique  
-**Live Site:** https://mail2yugi.github.io/hd/  
+**Live Site:** https://mail2yugi.github.io/h-d_boutique/  
 **Deployment Status:** Check the Actions tab
