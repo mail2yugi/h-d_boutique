@@ -53,6 +53,23 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({ 
+    success: true, 
+    message: 'H & D Boutique API',
+    endpoints: {
+      health: '/health',
+      products: '/api/products',
+      auth: '/auth',
+      favorites: '/api/favorites',
+      users: '/api/users',
+      admin: '/api/admin',
+      images: '/images'
+    }
+  });
+});
+
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/products', productRoutes);
@@ -74,27 +91,29 @@ app.use((err: any, req: any, res: any, next: any) => {
 // MongoDB connection
 const connectDB = async () => {
   try {
-    const mongoUri = process.env.MONGODB_URI;
-    if (!mongoUri) {
-      throw new Error('MONGODB_URI is not defined in environment variables');
+    if (mongoose.connection.readyState === 0) {
+      const mongoUri = process.env.MONGODB_URI;
+      if (!mongoUri) {
+        throw new Error('MONGODB_URI is not defined in environment variables');
+      }
+      await mongoose.connect(mongoUri);
+      console.log('✅ MongoDB connected successfully');
     }
-    await mongoose.connect(mongoUri);
-    console.log('✅ MongoDB connected successfully');
   } catch (error) {
     console.error('❌ MongoDB connection error:', error);
-    process.exit(1);
+    throw error;
   }
 };
 
-// Start server
-const startServer = async () => {
-  await connectDB();
+// Connect to MongoDB (for Vercel, this happens on first request)
+connectDB().catch(console.error);
+
+// Start server only in development (not on Vercel)
+if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`🌐 Environment: ${process.env.NODE_ENV}`);
   });
-};
-
-startServer();
+}
 
 export default app;
