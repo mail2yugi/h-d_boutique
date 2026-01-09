@@ -65,7 +65,7 @@ router.get('/', async (req, res) => {
 });
 
 // Get single product (public)
-router.get('/:id', async (req: AuthRequest, res) => {
+router.get('/:id', async (req: any, res: any) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -95,7 +95,7 @@ router.get('/:id', async (req: AuthRequest, res) => {
 });
 
 // Create product (admin only)
-router.post('/', authenticate, requireAdmin, upload.array('images', 10), async (req: AuthRequest, res) => {
+router.post('/', authenticate, requireAdmin, upload.array('images', 10), async (req: any, res: any) => {
   try {
     const { title, description, price, discountPercent, category } = req.body;
     const files = req.files as Express.Multer.File[];
@@ -134,7 +134,7 @@ router.post('/', authenticate, requireAdmin, upload.array('images', 10), async (
 });
 
 // Update product (admin only)
-router.put('/:id', authenticate, requireAdmin, upload.array('images', 10), async (req: AuthRequest, res) => {
+router.put('/:id', authenticate, requireAdmin, upload.array('images', 10), async (req: any, res: any) => {
   try {
     const product = await Product.findById(req.params.id);
 

@@ -29,7 +29,7 @@ const upload = multer({
 router.use(authenticate, requireAdmin);
 
 // Get admin stats and dashboard data
-router.get('/dashboard', async (req: AuthRequest, res) => {
+router.get('/dashboard', async (req: any, res: any) => {
   try {
     const totalUsers = await User.countDocuments();
     const totalProducts = await Product.countDocuments();
@@ -97,7 +97,7 @@ router.get('/dashboard', async (req: AuthRequest, res) => {
 });
 
 // Get all users
-router.get('/users', async (req: AuthRequest, res) => {
+router.get('/users', async (req: any, res: any) => {
   try {
     const { page = 1, limit = 20 } = req.query;
 
@@ -126,7 +126,7 @@ router.get('/users', async (req: AuthRequest, res) => {
 });
 
 // Get all activities
-router.get('/activities', async (req: AuthRequest, res) => {
+router.get('/activities', async (req: any, res: any) => {
   try {
     const { page = 1, limit = 50 } = req.query;
 
@@ -157,7 +157,7 @@ router.get('/activities', async (req: AuthRequest, res) => {
 // ===== PRODUCT MANAGEMENT ROUTES =====
 
 // GET all products with filters (admin view)
-router.get('/products', async (req: AuthRequest, res) => {
+router.get('/products', async (req: any, res: any) => {
   try {
     const { status, category, page = 1, limit = 20 } = req.query;
     const filter: any = {};
@@ -195,7 +195,7 @@ router.get('/products', async (req: AuthRequest, res) => {
 });
 
 // POST create new product with images
-router.post('/products', upload.array('images', 5), async (req: AuthRequest, res) => {
+router.post('/products', upload.array('images', 5), async (req: any, res: any) => {
   try {
     const { title, description, price, category, discountPercent } = req.body;
     const files = req.files as Express.Multer.File[];
@@ -263,7 +263,7 @@ router.post('/products', upload.array('images', 5), async (req: AuthRequest, res
 });
 
 // PATCH mark product as sold/available
-router.patch('/products/:id/status', async (req: AuthRequest, res) => {
+router.patch('/products/:id/status', async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const { status } = req.body;
@@ -295,7 +295,7 @@ router.patch('/products/:id/status', async (req: AuthRequest, res) => {
 });
 
 // PATCH update product discount
-router.patch('/products/:id/discount', async (req: AuthRequest, res) => {
+router.patch('/products/:id/discount', async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const { discountPercent } = req.body;
@@ -328,7 +328,7 @@ router.patch('/products/:id/discount', async (req: AuthRequest, res) => {
 });
 
 // PATCH update product details
-router.patch('/products/:id', async (req: AuthRequest, res) => {
+router.patch('/products/:id', async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const { title, description, price, category } = req.body;
@@ -356,7 +356,7 @@ router.patch('/products/:id', async (req: AuthRequest, res) => {
 });
 
 // DELETE product
-router.delete('/products/:id', async (req: AuthRequest, res) => {
+router.delete('/products/:id', async (req: any, res: any) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndDelete(id);

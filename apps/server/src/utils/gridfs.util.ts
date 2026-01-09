@@ -43,18 +43,18 @@ export const uploadToGridFS = (buffer: Buffer, filename: string, contentType: st
 export const deleteFromGridFS = async (fileId: string): Promise<void> => {
   const bucket = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  await bucket.delete(objectId);
+  await (bucket as any).delete(objectId);
 };
 
 export const streamFromGridFS = (fileId: string) => {
   const bucket = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  return bucket.openDownloadStream(objectId);
+  return (bucket as any).openDownloadStream(objectId);
 };
 
 export const getGridFSFileInfo = async (fileId: string) => {
   const bucket = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  const files = await bucket.find({ _id: objectId }).toArray();
+  const files = await (bucket as any).find({ _id: objectId }).toArray();
   return files.length > 0 ? files[0] : null;
 };

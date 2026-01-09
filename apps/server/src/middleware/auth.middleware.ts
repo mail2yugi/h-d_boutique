@@ -10,7 +10,7 @@ export interface AuthRequest extends Request {
   };
 }
 
-export const authenticate = async (req: AuthRequest, res: Response, next: NextFunction) => {
+export const authenticate = async (req: any, res: any, next: any) => {
   try {
     // Check for token in cookies (web) or Authorization header (mobile)
     let token = req.cookies?.token;
@@ -51,7 +51,7 @@ export const authenticate = async (req: AuthRequest, res: Response, next: NextFu
   }
 };
 
-export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction) => {
+export const requireAdmin = (req: any, res: any, next: any) => {
   if (!req.user) {
     return res.status(401).json({ success: false, message: 'Authentication required' });
   }

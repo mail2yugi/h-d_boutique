@@ -7,7 +7,7 @@ import { authenticate, AuthRequest } from '../middleware/auth.middleware';
 const router = express.Router();
 
 // Get user's favorites
-router.get('/', authenticate, async (req: AuthRequest, res) => {
+router.get('/', authenticate, async (req: any, res: any) => {
   try {
     const favorites = await Favorite.find({ userId: req.user!.id }).sort({ createdAt: -1 });
     
@@ -27,7 +27,7 @@ router.get('/', authenticate, async (req: AuthRequest, res) => {
 });
 
 // Toggle favorite
-router.post('/:productId/toggle', authenticate, async (req: AuthRequest, res) => {
+router.post('/:productId/toggle', authenticate, async (req: any, res: any) => {
   try {
     const { productId } = req.params;
     const userId = req.user!.id;
@@ -64,7 +64,7 @@ router.post('/:productId/toggle', authenticate, async (req: AuthRequest, res) =>
 });
 
 // Check if product is favorited
-router.get('/:productId/check', authenticate, async (req: AuthRequest, res) => {
+router.get('/:productId/check', authenticate, async (req: any, res: any) => {
   try {
     const { productId } = req.params;
     const userId = req.user!.id;

@@ -7,7 +7,7 @@ import { authenticate, AuthRequest } from '../middleware/auth.middleware';
 const router = express.Router();
 
 // Get current user
-router.get('/me', authenticate, async (req: AuthRequest, res) => {
+router.get('/me', authenticate, async (req: any, res: any) => {
   try {
     const user = await User.findById(req.user!.id);
 
@@ -45,7 +45,7 @@ router.get('/me', authenticate, async (req: AuthRequest, res) => {
 });
 
 // Get user activities
-router.get('/activities', authenticate, async (req: AuthRequest, res) => {
+router.get('/activities', authenticate, async (req: any, res: any) => {
   try {
     const { page = 1, limit = 20 } = req.query;
 
