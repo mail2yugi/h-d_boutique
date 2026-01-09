@@ -42,6 +42,10 @@ app.use(cors({
     'http://localhost:19002',
   ],
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['Set-Cookie'],
+  maxAge: 86400, // 24 hours
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
