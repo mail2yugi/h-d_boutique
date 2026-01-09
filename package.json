@@ -6,9 +6,17 @@
   "scripts": {
     "dev": "pnpm --parallel --filter './apps/*' dev",
     "build": "pnpm --filter './packages/*' build && pnpm --filter './apps/*' build",
+    "build:web": "pnpm --filter './packages/*' build && pnpm --filter '@hd-boutique/web' build",
+    "preview:web": "pnpm --filter '@hd-boutique/web' preview",
     "lint": "pnpm --parallel --filter './packages/*' --filter './apps/*' lint",
     "clean": "pnpm --parallel --filter './packages/*' --filter './apps/*' clean",
     "type-check": "pnpm --parallel --filter './packages/*' --filter './apps/*' type-check"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "^18.2.79",
+      "@types/react-dom": "^18.3.7"
+    }
   },
   "engines": {
     "node": ">=18.0.0",

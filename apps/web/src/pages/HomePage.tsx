@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Filter } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { Card, Badge, Button, Input, Select } from '@hd-boutique/ui';
+import { Card, Badge, Input, Select } from '@hd-boutique/ui';
 import { ProductWithImages, categoryLabels, ProductCategory } from '@hd-boutique/types';
 import api from '@/lib/axios';
 
