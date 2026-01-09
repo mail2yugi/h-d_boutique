@@ -13,11 +13,11 @@ const categoryContent: Record<ProductCategory, {
 }> = {
   BLOUSE: {
     icon: Shirt,
-    heroImage: '/hd/images/categories/blouse-hero.png',
+    heroImage: '/h-d_boutique/images/categories/blouse-hero.png',
     gallery: [
-      '/hd/images/categories/blouse-1.png',
-      '/hd/images/categories/blouse-2.png',
-      '/hd/images/categories/blouse-3.png',
+      '/h-d_boutique/images/categories/blouse-1.png',
+      '/h-d_boutique/images/categories/blouse-2.png',
+      '/h-d_boutique/images/categories/blouse-3.png',
     ],
     tagline: 'Where Tradition Meets Contemporary Elegance',
     features: [

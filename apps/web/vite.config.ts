@@ -5,7 +5,7 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/hd/', // Change this to match your GitHub repo name
+  base: '/h-d_boutique/', // Match your GitHub repo name
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

@@ -17,7 +17,7 @@ export function Header() {
         <div className="flex items-center justify-between py-4 gap-2 lg:gap-4">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0 min-w-0">
-            <img src="/hd/branding/logo-light.svg" alt="H & D Boutique" className="h-8 lg:h-10 flex-shrink-0" />
+            <img src="/h-d_boutique/branding/logo-light.svg" alt="H & D Boutique" className="h-8 lg:h-10 flex-shrink-0" />
             <span className="font-display text-lg lg:text-2xl font-bold text-brand-primary hidden sm:inline truncate">
               H & D Boutique
             </span>

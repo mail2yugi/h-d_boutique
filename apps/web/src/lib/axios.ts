@@ -28,7 +28,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
-      window.location.href = '/hd/signin';
+      window.location.href = '/h-d_boutique/signin';
     }
     return Promise.reject(error);
   }
