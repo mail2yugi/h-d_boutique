@@ -35,6 +35,7 @@ app.use(cors({
     'http://localhost:5173',
     'http://localhost:5174', // Alternative port when 5173 is in use
     'http://localhost:8083', // Mobile app port
+    'https://mail2yugi.github.io', // GitHub Pages
     process.env.MOBILE_URL || 'exp://localhost:19000',
     'http://localhost:19000',
     'http://localhost:19001',
