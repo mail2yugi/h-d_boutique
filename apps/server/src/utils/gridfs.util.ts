@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 let bucket: any;
 
-export const initGridFS = () => {
+export const initGridFS = (): any => {
   const db = mongoose.connection.db;
   if (!db) {
     throw new Error('MongoDB connection not established');
@@ -13,7 +13,7 @@ export const initGridFS = () => {
   return bucket;
 };
 
-export const getGridFSBucket = () => {
+export const getGridFSBucket = (): any => {
   if (!bucket) {
     return initGridFS();
   }
@@ -22,7 +22,7 @@ export const getGridFSBucket = () => {
 
 export const uploadToGridFS = (buffer: Buffer, filename: string, contentType: string): Promise<string> => {
   return new Promise((resolve, reject) => {
-    const bucket = getGridFSBucket();
+    const bucket: any = getGridFSBucket();
     const uploadStream = bucket.openUploadStream(filename, {
       contentType,
     });
@@ -41,20 +41,20 @@ export const uploadToGridFS = (buffer: Buffer, filename: string, contentType: st
 };
 
 export const deleteFromGridFS = async (fileId: string): Promise<void> => {
-  const bucket = getGridFSBucket();
+  const bucket: any = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  await (bucket as any).delete(objectId);
+  await bucket.delete(objectId);
 };
 
 export const streamFromGridFS = (fileId: string) => {
-  const bucket = getGridFSBucket();
+  const bucket: any = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  return (bucket as any).openDownloadStream(objectId);
+  return bucket.openDownloadStream(objectId);
 };
 
 export const getGridFSFileInfo = async (fileId: string) => {
-  const bucket = getGridFSBucket();
+  const bucket: any = getGridFSBucket();
   const objectId = new mongoose.Types.ObjectId(fileId);
-  const files = await (bucket as any).find({ _id: objectId }).toArray();
+  const files = await bucket.find({ _id: objectId }).toArray();
   return files.length > 0 ? files[0] : null;
 };
