@@ -6,6 +6,7 @@ import { Plus, Tag, Package, Trash } from 'lucide-react';
 import api from '@/lib/axios';
 import toast from 'react-hot-toast';
 import { Product, ProductCategory, categoryLabels } from '@hd-boutique/types';
+import { compressImages } from '@/utils/imageCompression';
 
 type TabType = 'products' | 'create';
 
@@ -66,6 +67,12 @@ export default function AdminPage() {
 
     try {
       setLoading(true);
+      
+      // Compress images before uploading
+      toast.loading('Compressing images...');
+      const compressedFiles = await compressImages(Array.from(selectedFiles), 0.7, 1920);
+      toast.dismiss();
+      
       const formDataToSend = new FormData();
       formDataToSend.append('title', formData.title);
       formDataToSend.append('description', formData.description);
@@ -73,8 +80,8 @@ export default function AdminPage() {
       formDataToSend.append('category', formData.category);
       formDataToSend.append('discountPercent', formData.discountPercent);
       
-      for (let i = 0; i < selectedFiles.length; i++) {
-        formDataToSend.append('images', selectedFiles[i]);
+      for (let i = 0; i < compressedFiles.length; i++) {
+        formDataToSend.append('images', compressedFiles[i]);
       }
 
       await api.post('/api/admin/products', formDataToSend, {
